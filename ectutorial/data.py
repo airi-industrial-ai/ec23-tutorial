@@ -19,7 +19,7 @@ class SlidingWindowDataset(Dataset):
 
 def get_ett_dataset():
     r = requests.get(
-        'https://raw.githubusercontent.com/zhouhaoyi/ETDataset/main/ETT-small/ETTh1.csv'
+        'https://raw.githubusercontent.com/airi-industrial-ai/ETDataset/main/ETT-small/ETTh1.csv'
     )
     open('ETTh1.csv', 'wb').write(r.content)
     ett = pd.read_csv('ETTh1.csv', index_col=0)
