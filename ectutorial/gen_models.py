@@ -2,7 +2,7 @@ import torch
 from torch.optim import Adam
 import torch.nn.functional as F
 from pytorch_lightning import LightningModule
-from ecstress.tcn_model import TCNModule
+from ectutorial.tcn_model import TCNModule
 
 class TCNGANModule(LightningModule):
     def __init__(
