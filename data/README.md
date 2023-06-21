@@ -1,0 +1,2 @@
+The copy of [Electricity Transformer Dataset (ETDataset)](https://github.com/zhouhaoyi/ETDataset/) by
+_Zhou, Haoyi, et al. "Informer: Beyond efficient transformer for long sequence time-series forecasting." Proceedings of the AAAI conference on artificial intelligence. Vol. 35. No. 12. 2021._
