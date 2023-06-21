@@ -9,19 +9,17 @@ class TCNGANModule(LightningModule):
         self,
         latent_dim,
         target_dim,
+        hidden_dim,
         num_layers,
-        num_filters,
-        dropout,
-        num_disc_steps,
         lr,
     ):
         super().__init__()
         self.latent_dim = latent_dim
         self.target_dim = target_dim
+        self.hidden_dim = hidden_dim
         self.num_layers = num_layers
-        self.num_filters = num_filters
-        self.dropout = dropout
-        self.num_disc_steps = num_disc_steps
+        self.dropout = 0
+        self.num_disc_steps = 1
         self.lr = lr
         self.automatic_optimization = False
 
@@ -30,7 +28,7 @@ class TCNGANModule(LightningModule):
             target_size=self.target_dim,
             nr_params=1,
             kernel_size=2,
-            num_filters=self.num_filters,
+            num_filters=self.hidden_dim,
             num_layers=self.num_layers,
             dilation_base=2,
             dropout=self.dropout,
@@ -42,7 +40,7 @@ class TCNGANModule(LightningModule):
             target_size=1,
             nr_params=1,
             kernel_size=2,
-            num_filters=self.num_filters,
+            num_filters=self.hidden_dim,
             num_layers=self.num_layers,
             dilation_base=2,
             dropout=self.dropout,
