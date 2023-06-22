@@ -55,14 +55,34 @@ def gen_weighted_grayscale(image):
         cimgs.append(gs)
     return tuple(cimgs)
 
-def vis_greyscale(image):
+def vis_grayscale(image):
     gs, red, green, blue = gen_weighted_grayscale(image)
     fig, axs = plt.subplots(1, 4)
     axs[0].imshow(gs, vmin=0, vmax=1)
     axs[1].imshow(red, vmin=0, vmax=1)
     axs[2].imshow(green, vmin=0, vmax=1)
     axs[3].imshow(blue, vmin=0, vmax=1)
-
+    
+def vis_random(zeros, eights):
+    idx0 = np.random.randint(zeros.shape[0], size=(2,))
+    idx8 = np.random.randint(eights.shape[0], size=(2,))
+    fig, axs = plt.subplots(1, 4)
+    for i in range(2):
+        gs0, _, _, _ = gen_weighted_grayscale(zeros[idx0[i]])
+        axs[i * 2].imshow(gs0, vmin=0, vmax=1)
+        gs8, _, _, _ = gen_weighted_grayscale(eights[idx8[i]])
+        axs[i * 2 + 1].imshow(gs8, vmin=0, vmax=1)
+        
+def vis_zero_hist(zeros):
+    gs, red, green, blue = gen_weighted_grayscale(zeros[0])
+    x = red[:, :, 0].reshape(-1, 1)
+    plt.hist(x[x> 0], alpha=0.5, label="red")
+    x = green[:, :, 0].reshape(-1, 1)
+    plt.hist(x[x> 0], alpha=0.5, label="green")
+    x = blue[:, :, 0].reshape(-1, 1)
+    plt.hist(x[x> 0], alpha=0.5, label="blue")
+    plt.legend()
+    plt.title("Distribution of intensity for different colors")
     
 def gen_colored_splits(zeros, eights):
     train_zeros = weighted_grayscale(zeros[:zeros.shape[0] // 4], 0)
